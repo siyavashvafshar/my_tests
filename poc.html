@@ -1,0 +1,30 @@
+<html>
+        <head>
+        </head>
+        <body>
+                <div id="border">
+                  <input type="text" name="" id="phoneNumber">
+                  <button  id='sendDataBtn' > send data</button>
+                </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(function () {
+  $('%23sendDataBtn').click(function(){
+    var phoneNumber = $('%23phoneNumber');
+    var newXHR = new XMLHttpRequest();
+    newXHR.addEventListener( 'load', reqListener );
+    newXHR.open( 'POST', 'https://api.alopeyk.com/api/v2/login?platform=pwa' );
+    newXHR.setRequestHeader('Content-Type','application/json;charset=utf-8');
+    var jsonData = {'type':'CUSTOMER','model':'Firefox 82.0','platform':'pwa','version':'1','manufacturer':'Ubuntu','isVirtual':false,'serial':true,'app_version':'1.2.0','uuid':true,'phone':phoneNumber.val()};
+    var formattedJsonData = JSON.stringify( jsonData  );
+    console.log( jsonData );
+    newXHR.send( formattedJsonData );
+    console.log('sendddddddddddddddddddddddddddddddd');
+  })
+  function reqListener () {
+    console.log( this.response );
+  }
+});
+</script>
+        </body>
+</html>
